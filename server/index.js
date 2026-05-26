@@ -252,6 +252,10 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 app.get('/api/contact', async (req, res) => {
   try {
     const [rows] = await pool.execute('SELECT * FROM contact_messages ORDER BY created_at DESC');
