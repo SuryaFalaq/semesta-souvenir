@@ -49,7 +49,8 @@ const Products = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8">
             {products.map((product, index) => (
-              <div
+              <Link
+                to={`/products/${product.id}`}
                 key={product.id}
                 className={`group relative overflow-hidden rounded-3xl bg-[#f7f5f2] ${
                   index === 0 ? 'md:col-span-2' : ''
@@ -83,7 +84,7 @@ const Products = () => {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

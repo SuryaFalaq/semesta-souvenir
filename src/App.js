@@ -8,6 +8,7 @@ import AdminLayout from './components/AdminLayout';
 import Home from './pages/home';
 import About from './pages/About';
 import Products from './pages/Products';
+import ProductDetail from './pages/ProductDetail';
 import Contact from './pages/Contact';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -30,6 +31,7 @@ function App() {
             <Route path="/" element={<><Navbar /><Home /><Footer /></>} />
             <Route path="/about" element={<><Navbar /><About /><Footer /></>} />
             <Route path="/products" element={<><Navbar /><Products /><Footer /></>} />
+            <Route path="/products/:id" element={<><Navbar /><ProductDetail /><Footer /></>} />
             <Route path="/contact" element={<><Navbar /><Contact /><Footer /></>} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
