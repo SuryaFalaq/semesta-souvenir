@@ -59,7 +59,7 @@ const AdminProducts = () => {
 
     const productData = {
       ...formData,
-      image: previewImage || (editingProduct ? editingProduct.image : null)
+      image: formData.image || (editingProduct ? editingProduct.image : null)
     };
 
     let success;

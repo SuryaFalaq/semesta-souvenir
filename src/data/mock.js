@@ -72,7 +72,7 @@ export const translations = {
         phone: 'Nomor Telepon',
         product: 'Pilih Produk',
         quantity: 'Jumlah',
-        message: 'Pesan / Detail Pesanan',
+        message: 'Deskripsi Pesanan',
         submit: 'Kirim Pesanan',
         success: 'Pesanan berhasil dikirim! Kami akan menghubungi Anda segera.'
       },
@@ -161,7 +161,7 @@ export const translations = {
         phone: 'Phone Number',
         product: 'Select Product',
         quantity: 'Quantity',
-        message: 'Message / Order Details',
+        message: 'Order Description',
         submit: 'Submit Order',
         success: 'Order submitted successfully! We will contact you soon.'
       },
