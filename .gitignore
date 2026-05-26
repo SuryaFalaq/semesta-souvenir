@@ -1,0 +1,9 @@
+node_modules/
+build/
+.env
+*.log
+.DS_Store
+server/node_modules/
+server/uploads/
+ngrok/
+server/semesta.db
