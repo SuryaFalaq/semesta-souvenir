@@ -265,6 +265,56 @@ app.get('/api/contact', async (req, res) => {
   }
 });
 
+app.put('/api/contact/:id', async (req, res) => {
+  try {
+    const { status } = req.body;
+    const validStatuses = ['Baru', 'Diproses', 'Selesai', 'Batal'];
+    if (!validStatuses.includes(status)) {
+      return res.status(400).json({ error: 'Status tidak valid' });
+    }
+    const [result] = await pool.execute(
+      'UPDATE contact_messages SET status = ? WHERE id = ?',
+      [status, req.params.id]
+    );
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Pesan tidak ditemukan' });
+    }
+    const [rows] = await pool.execute('SELECT * FROM contact_messages WHERE id = ?', [req.params.id]);
+    res.json(rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete('/api/contact/:id', async (req, res) => {
+  try {
+    const [result] = await pool.execute('DELETE FROM contact_messages WHERE id = ?', [req.params.id]);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Pesan tidak ditemukan' });
+    }
+    res.json({ message: 'Pesan berhasil dihapus' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// ========== STATS/DASHBOARD ROUTES ==========
+
+app.get('/api/stats', async (req, res) => {
+  try {
+    const [productCount] = await pool.execute('SELECT COUNT(*) as count FROM products');
+    const [orderCount] = await pool.execute('SELECT COUNT(*) as count FROM contact_messages');
+    const [recentOrders] = await pool.execute('SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 5');
+    res.json({
+      totalProducts: productCount[0].count,
+      totalOrders: orderCount[0].count,
+      recentOrders
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 initDb().then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);

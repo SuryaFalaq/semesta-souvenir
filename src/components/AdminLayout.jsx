@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
-import { LayoutDashboard, Package, Folder, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, Folder, ShoppingCart, LogOut } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const AdminLayout = () => {
@@ -9,8 +9,9 @@ const AdminLayout = () => {
   const navigate = useNavigate();
 
   const menuItems = [
-    { path: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
+    { path: '/admin', icon: LayoutDashboard, label: language === 'id' ? 'Dashboard' : 'Dashboard' },
     { path: '/admin/products', icon: Package, label: language === 'id' ? 'Produk' : 'Products' },
+    { path: '/admin/orders', icon: ShoppingCart, label: language === 'id' ? 'Pemesanan' : 'Orders' },
     { path: '/admin/categories', icon: Folder, label: language === 'id' ? 'Kategori' : 'Categories' },
   ];
 
@@ -26,6 +27,9 @@ const AdminLayout = () => {
     }
     if (location.pathname === '/admin/products') {
       return language === 'id' ? 'Kelola Produk' : 'Manage Products';
+    }
+    if (location.pathname === '/admin/orders') {
+      return language === 'id' ? 'Kelola Pemesanan' : 'Manage Orders';
     }
     if (location.pathname === '/admin/categories') {
       return language === 'id' ? 'Kelola Kategori' : 'Manage Categories';
