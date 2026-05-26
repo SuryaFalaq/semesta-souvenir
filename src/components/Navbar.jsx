@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Globe, Settings } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { Button } from './ui/button';
 
@@ -69,17 +69,8 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Language Toggle & Admin & Mobile Menu */}
+          {/* Language Toggle & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              asChild
-            >
-              <Link to="/admin" className="flex items-center space-x-2 text-[#61525a] hover:text-[#1e1919] hover:bg-[#f7f5f2]">
-                <Settings className="w-4 h-4" />
-              </Link>
-            </Button>
             <Button
               variant="ghost"
               size="sm"
